@@ -9,13 +9,13 @@ class Role(models.Model):
     ( "Moderator" , "moderator"),
     ( "User" ,"user"), 
     ]
-    name=models.CharField(verbose_name="Role name", max_length=20, unique=True, null=False, blank=False)
-    is_default=models.BooleanField(default=False)
+    name=models.CharField(verbose_name="Role name", max_length=20, unique=True, null=True, blank=True)
+    is_default=models.BooleanField(default=True)
     
 class User(AbstractUser):
-    name = models.CharField(verbose_name="Full Name", blank=False, null=False, max_length=30)
-    last_ip = models.GenericIPAddressField(verbose_name="Last IP Address", blank=False, null=False, protocol="both")
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, verbose_name="Role", blank=False, null=False)
+    name = models.CharField(verbose_name="Full Name", blank=True, null=True, max_length=30)
+    last_ip = models.GenericIPAddressField(verbose_name="Last IP Address", blank=True, null=True, protocol="both")
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, verbose_name="Role", blank=True, null=True)
 
 
 
